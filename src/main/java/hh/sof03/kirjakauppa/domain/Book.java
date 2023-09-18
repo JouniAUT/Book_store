@@ -1,10 +1,20 @@
 package hh.sof03.kirjakauppa.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String title;
 	private String author;
+	@Column(name = "Release_year")
 	private int year;
 	private String isbn;
 	private double price;
@@ -69,7 +79,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "title: " + title + ", author: " + author + ", year: " + year + ", isbn: " + isbn + ", price: " + price;
+		return "title: " + title + ", author: " + author + ", year: " + year + 
+				", isbn: " + isbn + ", price: " + price;
 	}
 	
 	
