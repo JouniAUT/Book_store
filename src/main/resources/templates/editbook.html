@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Jouni's little bookstore</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+	
+	
+</head>
+<body>
+   <h1>Edit book</h1>
+   	<div>
+		<form th:object="${book}" th:action="@{../save}" action="#" method="post">
+			<label for= "id"></label>
+			<input type= "hidden" id= "id" th:field= "*{id}" readonly= "readonly">
+			<label for="title">Edit title </label>
+			<input type= "text" th:field= "*{title}"> <br><br>
+			<label for= "author">Edit author </label>
+			<input type= "text" th:field= "*{author}"> <br><br>
+			<label for= "year">Edit year of release </label>
+			<input type= "text" th:field= "*{year}"> <br><br>
+			<label for= "isbn">Edit ISBN </label>
+			<input type= "text" th:field= "*{isbn}"> <br><br>
+			<label for= "price">Edit price </label>
+			<input type= "text" th:field= "*{price}"> <br><br>
+			<input type= "submit" class= "btn btn-success" value= "Save">
+		</form>
+	</div>
+</body>
+</html>
+  
+</body>
+</html>
