@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Jouni's little bookstore</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+   <h1>Add a book to bookstore inventory</h1>
+  	
+  	<div>
+  		<form th:object= "${book}" th:action= "@{save}" action= "#" method= "post">
+ 			<label for= "title">Title of the book: </label>
+ 			<input type= "text" id= "title" th:field= "*{title}"/> <br>
+ 			<label for= "author">Author of the book: </label>
+ 			<input type= "text" id= "author" th:field= "*{author}"/> <br>
+ 			<label for= "year">Release year of the book: </label>
+ 			<input type= "text" id= "year" th:field= "*{year}"/> <br>
+ 			<label for= "isbn">ISBN of the book: </label>
+ 			<input type= "text" id= "isbn" th:field= "*{isbn}"/> <br>
+ 			<label for= "price">Price of the book: </label>
+ 			<input type= "text" id= "price" th:field= "*{price}"/> <br>
+  			<input type= submit value= "Save"></input>
+  		</form>
+  	</div>
+  
+</body>
+</html> 
