@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Jouni's little bookstore</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+	
+	
+</head>
+<body>
+   <h1>Add a category to your bookstore</h1>
+  	
+  	<div>
+  		<form th:object= "${category}" th:action= "@{savecategory}" action= "#" method= "post"> <!-- määritetään formiin parametrit, jolla thymeleaf hakee tiedot CategoryControllerista -->
+ 			<label for= "name">Name of the category: </label>
+ 			<input type= "text" id= "name" th:field= "*{name}"/> <br><br>
+  			<input type= submit class="btn btn-success" value= "Save"></input>
+  		</form>
+  	</div>
+  
+</body>
+</html> 

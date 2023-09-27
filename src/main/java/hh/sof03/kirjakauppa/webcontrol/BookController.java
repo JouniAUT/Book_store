@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.sof03.kirjakauppa.domain.Book;
 import hh.sof03.kirjakauppa.domain.BookRepository;
+import hh.sof03.kirjakauppa.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 	
 	@Autowired
 	BookRepository bookRepository;
-	
-
+	@Autowired
+	CategoryRepository categoryRepository;
 	
 	/*@RequestMapping(value = "index")
 	String showIndex(Model model) {
@@ -34,13 +35,14 @@ public class BookController {
 	@RequestMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", categoryRepository.findAll()); //lisätään categoryrepository kirjanluonti-metodin käyttöön
 		return "addbook";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
-		bookRepository.save(book);
-		return "redirect:booklist";
+		bookRepository.save(book);	
+		return "redirect:/booklist";
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
@@ -52,6 +54,7 @@ public class BookController {
 	@RequestMapping(value = "/edit/{id}")
 	public String showEditBook(@PathVariable("id")Long bookId, Model model) {
 		model.addAttribute("book", bookRepository.findById(bookId));
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "editbook";
 	}
 	

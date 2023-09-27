@@ -21,6 +21,12 @@
  			<input type= "text" id= "isbn" th:field= "*{isbn}"/> <br>
  			<label for= "price">Price of the book: </label>
  			<input type= "text" id= "price" th:field= "*{price}"/> <br>
+ 			
+			
+ 			<label for= "categorylist">Category of the book: </label> <!-- lisätään dropdown-valikko, johon on johdettu kaikki category-luokan category-oliot-->
+ 			<select id= "categorylist" th:field= "*{category}" class= "form-control">
+ 				<option th:each="categ: ${categories}" th:value= "${categ.categoryid}" th:text= "${categ.name}"></option>
+ 			</select>
   			<input type= submit class="btn btn-success" value= "Save"></input>
   		</form>
   	</div>
