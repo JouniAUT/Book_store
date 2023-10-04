@@ -1,5 +1,8 @@
 package hh.sof03.kirjakauppa.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
-
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -23,6 +26,7 @@ public class Book {
 	
 	
 	@ManyToOne //Book ManyToOne Category, monta kirjaa voi liittyä yhteen kategoriaan
+	@JsonIgnoreProperties ("books") //lisätään @JsonIgnoreProperties ikuisen loopin estämiseksi
 	@JoinColumn(name = "categoryid") //viiteavaimen määritys tietokanna Book-taululle
 	private Category category; //lisätään category attribuutti Book-luokan käyttöön
 	
@@ -104,8 +108,12 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "title: " + title + ", author: " + author + ", year: " + year + 
-				", isbn: " + isbn + ", price: " + price + ", category :" + category; //lisätään myös category-attribuutti toString-metodiin
+		if (this.id != null)
+			return "Id: " + id + ", title: " + title + ", author: " + author + ", year: " + year + 
+				", isbn: " + isbn + ", price: " + price + ", category :" + this.getCategory(); //lisätään myös category-attribuutti toString-metodiin
+		else
+			return "Id: " + id + ", title: " + title + ", author: " + author + ", year: " + year + 
+					", isbn: " + isbn + ", price: " + price;
 	}
 	
 	

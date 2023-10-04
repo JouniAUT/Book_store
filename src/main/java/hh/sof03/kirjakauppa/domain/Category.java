@@ -2,6 +2,8 @@ package hh.sof03.kirjakauppa.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +19,8 @@ public class Category {
 	private Long categoryid;
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // Category OneToMany Students, Kategoria moneen opiskelijaan
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // Category OneToMany Students, yksi kategoria monelle kirjalle
+	@JsonIgnoreProperties("category") //lisätään, jotta voidaan estää ikuinen looppi, kun haetaan kaikki kirjat
 	private List <Book> books; //luodaan lista kirja-olioita varten
 	
 
@@ -25,12 +28,10 @@ public class Category {
 		super();
 	}
 	
-	
 	public Category(String name) { 	//Luodaan parametrillinen konstruktori luokalle, pelkällä name-attribuutilla.
 		super();					//categoryid ei ole varsinaisesti käyttäjää varten, joten sitä ei tarvitse laittaa konstruktoriin. 
 		this.name = name;
 	}
-
 
 	public Long getCategoryid() { //getterit, setterit ja toSrtring Category-luokan attribuuteille
 		return categoryid;

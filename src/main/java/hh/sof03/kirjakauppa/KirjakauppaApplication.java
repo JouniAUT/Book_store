@@ -12,6 +12,7 @@ import hh.sof03.kirjakauppa.domain.BookRepository;
 import hh.sof03.kirjakauppa.domain.Category;
 import hh.sof03.kirjakauppa.domain.CategoryRepository;
 
+
 @SpringBootApplication
 public class KirjakauppaApplication {
 	private static final Logger log = LoggerFactory.getLogger(KirjakauppaApplication.class);
@@ -23,6 +24,7 @@ public class KirjakauppaApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) { //lisätään bookrepository ja categoryrepository commandlinen käyttöön
 		return (args) -> {
+			
 			
 			log.info("create few new categories");
 			Category scifi = new Category("Scifi");
@@ -38,8 +40,8 @@ public class KirjakauppaApplication {
 			}
 			
 			log.info("save a couple of books");
-			bookRepository.save(new Book ("Tuntematon sotilas", "Väinö Linna", 1954, "9789510445785", 19.95, historical));
-			bookRepository.save(new Book ("Vuonna 1984", "George Orwell", 1949, "9789510404478", 14.50, scifi));
+			bookRepository.save(new Book ("Tuntematon sotilas", "Väinö Linna", 1954, "978-9510-445-785", 19.95, historical));
+			bookRepository.save(new Book ("Vuonna 1984", "George Orwell", 1949, "978-9510-404-478", 14.59, scifi));
 			
 			log.info("fetch all books");
 			for (Book book : bookRepository.findAll()) {
