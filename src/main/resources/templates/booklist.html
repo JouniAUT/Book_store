@@ -7,7 +7,12 @@
 </head>
 <body>
    <h1>List of all the books</h1>
-  
+  	
+  	<div class= "col-md-4"> <!-- Lisätään Logout-nappi booklist-sivulle -->
+  		<form th:action="@{/logout}" method= "post">
+  			<input type= "submit" value= "Sign out" class= "btn btn-sm btn-danger"/>
+  		</form>
+  	</div>
   <table class="table table-striped">
   	<tr>
   		<th>Title</th>
