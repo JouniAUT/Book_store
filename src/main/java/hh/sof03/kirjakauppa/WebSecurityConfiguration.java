@@ -25,30 +25,30 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfiguration {
 
 	@Bean
-	public SecurityFilterChain configure(HttpSecurity http) throws Exception{
+	public SecurityFilterChain configure(HttpSecurity http) throws Exception{ //määritellään URL-polut suojatuiksi
 		http
 		.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers(antMatcher("/css/**")).permitAll()
+				.requestMatchers(antMatcher("/css/**")).permitAll() //annetaan css.tiedostolle lupatoimia uloskirjauksen yhteydessä
 				.anyRequest().authenticated()
 		)
-		.formLogin(formlogin -> formlogin
-			.defaultSuccessUrl("/booklist", true)
+		.formLogin(formlogin -> formlogin //luodaan automaattiinen login-sivu
+			.defaultSuccessUrl("/booklist", true) //ohjataan käyttäjä booklist-sivulle kirjautumisen jälkeen
 			.permitAll()
 		)
 		.logout(logout -> logout
-				.permitAll()
+				.permitAll() //salli uloskirjaus kaikille käyttäjille
 		);
 		return http.build();
 				
 	}
 	
 	@Bean
-	public UserDetailsService userDetailService() {
-		List<UserDetails> users = new ArrayList<UserDetails>();
+	public UserDetailsService userDetailService() { 
+		List<UserDetails> users = new ArrayList<UserDetails>(); //luodaan lista käyttäjiä varten
 		
-		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder(); //luodaan salasanakryptays
 		
-		UserDetails user1 = User
+		UserDetails user1 = User //tavallinen käyttäjä
 			.withUsername("user")
 			.password(passwordEncoder.encode("user"))
 			.roles("USER")
@@ -56,7 +56,7 @@ public class WebSecurityConfiguration {
 		
 		users.add(user1);
 	
-	UserDetails user2 = User
+	UserDetails user2 = User //admin-käyttäjä
 			.withUsername("admin")
 			.password(passwordEncoder.encode("admin"))
 			.roles("ADMIN")
