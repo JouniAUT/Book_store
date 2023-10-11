@@ -47,7 +47,7 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')") //Lisätään URL:n arvailun estämiseksi. Käyttäjä tarvitsee admin roolin käyttääkseen ko. toimintoa
+	@PreAuthorize("hasAuthority('ADMIN')") //Lisätään URL:n arvailun estämiseksi. Käyttäjä tarvitsee admin roolin käyttääkseen ko. toimintoa
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		bookRepository.deleteById(bookId);
 		return "redirect:../booklist";
