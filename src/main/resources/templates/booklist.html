@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> <!-- Käyttäjän authentikointia varten -->
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> <!-- Käyttäjän autentikointia varten -->
 <head>
 	<title>Jouni's little bookstore</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -35,7 +35,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> <!-- Käy
 	  	<td th:text = "${book.isbn}"></td>
 	  	<td th:text = "${book.price}"></td>
 	  	<td th:text = "${book.category!='null'?book.category.name:''}"></td> <!-- lisätään category-attribuutin tiedot addbook.html-sivulle -->
-	  	<td sec:authorize= "hasAuthority('ADMIN')"><a class= "btn btn-danger" th:href= "@{/delete/{id}(id=${book.id})}">Delete book</a></td>
+	  	<td sec:authorize= "hasAuthority('ADMIN')"><a class= "btn btn-danger" th:href= "@{/delete/{id}(id=${book.id})}">Delete book</a></td> <!-- Poistettaan delete ja edit -näppäimet pois tavallisilta käyttäjiltä -->
 	  	<td sec:authorize= "hasAuthority('ADMIN')"><a class= "btn btn-primary" th:href= "@{/edit/{id}(id=${book.id})}">Edit book</a>
 	  	
   	</tr>
