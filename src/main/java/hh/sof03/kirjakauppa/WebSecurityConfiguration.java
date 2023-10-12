@@ -25,7 +25,7 @@ public class WebSecurityConfiguration {
 				.requestMatchers(antMatcher("/css/**")).permitAll() //annetaan css.tiedostolle lupatoimia uloskirjauksen yhteydessä
 				.anyRequest().authenticated()
 		)
-		.formLogin(formlogin -> formlogin //luodaan automaattiinen login-sivu
+		.formLogin(formlogin -> formlogin //luodaan automaattiinen login-sivu, annetaan login-sivu kaikkien käyttäjien käyttöön
 			.defaultSuccessUrl("/booklist", true) //ohjataan käyttäjä booklist-sivulle kirjautumisen jälkeen
 			.permitAll()
 		)
