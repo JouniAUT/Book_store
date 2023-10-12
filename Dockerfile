@@ -3,8 +3,11 @@ COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
-# Package stage
+#
+# Jar Package
+#
+# StudentListSecureDB-0.0.1-SNAPSHOT.jar  = <artifactId>-<version>.jar (pom.xml)
 FROM eclipse-temurin:17-jre-focal
-COPY --from=build back_end_syksy_2023\sof03_mavenprojektit\kirjakauppa-0.0.1-SNAPSHOT.jar /usr/local/lib/kirjakauppajt25.jar
+COPY --from=build /home/app/target/kirjakauppa-0.0.1-SNAPSHOT.jar /usr/local/lib/book_store.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/kirjakauppajt25.jar"]
+ENTRYPOINT ["java", "-jar", "/usr/local/lib/bookstore.jar"]
