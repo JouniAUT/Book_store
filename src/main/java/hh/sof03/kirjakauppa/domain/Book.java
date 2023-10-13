@@ -1,6 +1,5 @@
 package hh.sof03.kirjakauppa.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
