@@ -15,35 +15,35 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public class UserRepositoryTest {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userRepository; //liitetään repository-luokkka testiluokkaan
 	
 	@Test
-	public void findUserByUsername() {
-		List<User> users = userRepository.findUserByUsername("user");
+	public void findUserByUsername() { //luodaan metodi jolla etsitään käyttäjänimellä olio
+		List<User> users = userRepository.findUserByUsername("user"); //etsitään käyttäjänimellä
 			
-		assertThat(users).hasSize(1);
-		assertThat(users.get(0).getId()).isEqualTo(1);
+		assertThat(users).hasSize(1); //tarkistetaan äsken luodun listan koko
+		assertThat(users.get(0).getId()).isEqualTo(1); //tarkistetaan että listan ensimmäisen olion id on 1
 		
 	}
 	
 	@Test
-	public void createNewUser() {
+	public void createNewUser() { //luodaan uusi käyttäjä testiuokassa
 		User user = new User("Jouni", "$2a$10$tjWdBTsn.0AOZrEZ9Mm1J.b32rBDhig4GgSEUh4dBjJn0TTTdhEL6", "jouni@jouni.net", "ADMIN");
-		userRepository.save(user);
-		assertThat(user.getId()).isNotNull();
+		userRepository.save(user); //tallennetaan käyttäjä
+		assertThat(user.getId()).isNotNull(); //tarkistetaan, että äsken luodulla käyttäjällä on myös id
 	}
 	
 	@Test
-	public void deleteAllUsers() {
+	public void deleteAllUsers() { //luodaan metodi jolla poistetaan kaikki käyttäjät testiluokassa
 		userRepository.deleteAll();
 		
-		assertThat(userRepository.count()).isEqualTo(0);
+		assertThat(userRepository.count()).isEqualTo(0); //tarkistetaan, että kaikki käyttäjät on poistettu
 	}
 	
 	@Test
-	public void deleteFirstUser() {
-		userRepository.deleteById((long)1);
-		assertThat(userRepository.findById((long)1).isEmpty());
-		assertThat(userRepository.count()).isEqualTo(1);
+	public void deleteFirstUser() { //luodaan metodi jolla poistetaan listan ensimmäinen käyttäjä
+		userRepository.deleteById((long)1); //poistetaan id:n mukaan listan ensimmäinen käyttäjä
+		assertThat(userRepository.findById((long)1).isEmpty()); //tarkistetaan, että äsken poistetun käyttäjän id on tyhjä
+		assertThat(userRepository.count()).isEqualTo(1); //tarkistetaan, että jäljellä olevien käyttäjien määrä on 1
 	}
 }

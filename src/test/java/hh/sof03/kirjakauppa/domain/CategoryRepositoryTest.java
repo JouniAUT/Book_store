@@ -15,35 +15,36 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public class CategoryRepositoryTest {
 	
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryRepository categoryRepository; //liitetään repository-luokkka testiluokkaan
 	
 	@Test
-	public void findByCategoryName() {
-		List<Category> categories = categoryRepository.findByName("Thriller");
+	public void findByCategoryName() { //luodaan metodi, jolla etsitään nimellä kategoria-olio
+		List<Category> categories = categoryRepository.findByName("Thriller"); //etsitään kategorian nimellä
 		
-		assertThat(categories).hasSize(1);
-		assertThat(categories.get(0).getName()).isEqualTo("Thriller");
+		assertThat(categories).hasSize(1); //tarkistetaan juuri luodun listan koko
+		assertThat(categories.get(0).getName()).isEqualTo("Thriller"); //tarkistetaan listan ensimmäisen olion nimi
 	}
 	
 	@Test
-	public void createNewCategory() {
-		Category category = new Category("Detective");
-		categoryRepository.save(category);
-		assertThat(category.getCategoryid()).isNotNull();
+	public void createNewCategory() { //luodaan metodi jolla luodaan uusi kategoria
+		Category category = new Category("Detective"); //luodaan Detective-niminen kategoria
+		categoryRepository.save(category); //tallennetaan uusi kategoria
+		assertThat(category.getCategoryid()).isNotNull(); // tarkistetaan, että uudella kategorialla on id
 	}
 	
 	@Test
-	public void deleteAllCategories() {
-		categoryRepository.deleteAll();
-		assertThat(categoryRepository.count()).isEqualTo(0);
+	public void deleteAllCategories() { //luodaan metodi jolla poistetaan kaikki kategoria oliot
+		categoryRepository.deleteAll(); //poistetaan kaikki kategoriat
+		assertThat(categoryRepository.count()).isEqualTo(0); //tarkistetaan, että kaikki kategoriat on poistettu
 	}
 	
 	@Test
-	public void deleteFirstCategory() {
-		categoryRepository.deleteById((long )1);
-		assertThat(categoryRepository.existsById((long) 2));
+	public void deleteFirstCategory() { // luodaan metodi, jolla poistettan listan ensimmäinen kategoria
+		categoryRepository.deleteById((long )1); //poistetaan ensimmäinen kategoria
+		assertThat(categoryRepository.existsById((long) 2)); //tarkistetaan, että kategoriat 2 ja 3 ovat vielä tallella
 		assertThat(categoryRepository.existsById((long) 3));
-		assertThat(categoryRepository.count()).isLessThan(3);
+		assertThat(categoryRepository.count()).isGreaterThan(1);
+		assertThat(categoryRepository.count()).isLessThan(3); //tarkistetaan, että kategorioita on enemmän kuin 1, mutta vähemmän kuin 3
 	}
 }
 	
