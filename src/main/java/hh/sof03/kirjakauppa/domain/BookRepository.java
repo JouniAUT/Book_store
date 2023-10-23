@@ -1,7 +1,12 @@
 package hh.sof03.kirjakauppa.domain;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
 
+		List<Book> findByTitle(String title); //luodaan metodi, jolla voidaan etsiä kirjan nimen perusteella kirjoja
+		
 }
+
