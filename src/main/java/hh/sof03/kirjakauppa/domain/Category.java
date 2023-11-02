@@ -19,7 +19,7 @@ public class Category {
 	private Long categoryid;
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // Category OneToMany Students, yksi kategoria monelle kirjalle
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // Category OneToMany Books, yksi kategoria monelle kirjalle
 	@JsonIgnoreProperties("category") //lisätään, jotta voidaan estää ikuinen looppi, kun haetaan kaikki kirjat
 	private List <Book> books; //luodaan lista kirja-olioita varten
 	
