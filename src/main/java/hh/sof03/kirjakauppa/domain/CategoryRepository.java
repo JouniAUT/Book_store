@@ -8,4 +8,5 @@ public interface CategoryRepository extends CrudRepository<Category, Long>{
 //käytetään valmiiksi luotua CrudRepository-kirjastoa, josta CategoryRepository saa toimintoja käyttöönsä
 
 	List<Category> findByName(String name);
+	
 }	
